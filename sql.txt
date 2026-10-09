@@ -1,0 +1,36 @@
+-- ============================================
+-- SỬ DỤNG DATABASE QUẢN LÝ SINH VIÊN
+-- ============================================
+USE QuanLySinhVien;
+
+-- ============================================
+-- TRUY VẤN 1: Hiển thị tất cả học viên
+-- ============================================
+SELECT * FROM Student;
+
+-- ============================================
+-- TRUY VẤN 2: Học viên đang theo học (Status = 1)
+-- ============================================
+SELECT * FROM Student WHERE Status = 1;
+
+-- ============================================
+-- TRUY VẤN 3: Môn học có Credit < 10
+-- ============================================
+SELECT * FROM Subject WHERE Credit < 10;
+
+-- ============================================
+-- TRUY VẤN 4: Học viên lớp A1 (JOIN)
+-- ============================================
+SELECT S.StudentId, S.StudentName, C.ClassName
+FROM Student S 
+JOIN Class C ON S.ClassId = C.ClassID
+WHERE C.ClassName = 'A1';
+
+-- ============================================
+-- TRUY VẤN 5: Điểm môn CF của học viên
+-- ============================================
+SELECT S.StudentId, S.StudentName, Sub.SubName, M.Mark
+FROM Student S 
+JOIN Mark M ON S.StudentId = M.StudentId 
+JOIN Subject Sub ON M.SubId = Sub.SubId
+WHERE Sub.SubName = 'CF';
